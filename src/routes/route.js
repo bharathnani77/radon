@@ -1,5 +1,10 @@
+const text = require('body-parser/lib/types/text');
 const express = require('express');
 const externalModule = require('../logger/logger')
+const externalModule = require('../util/helper')
+const externalModule = require('../validator/formatter')
+
+
 
 const router = express.Router();
 
@@ -12,10 +17,18 @@ router.get('/test-me', function (req, res) {
 });
 
 router.get('/test-me1', function (req, res) {
+    console.log(externalModule.batchName + ','+ externalModule.weekDay + ', the topic for today is Nodejs module system')
+    externalModule.date(day)
+    externalModule.month(month.getMonth())
+    externalModule.batchInfo()
     res.send('My second ever api!')
+
 });
 
 router.get('/test-me2', function (req, res) {
+   console.log(text.trim())
+   console.log(text.toLowerCase())
+   console.log(text.toUpperCase())
     res.send('My third api!')
 });
 
