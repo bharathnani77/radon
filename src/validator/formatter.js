@@ -1,15 +1,19 @@
-let text = "         functionup"
-function trim(){
- return text.trim()
+const trim = function(){
+let text = "functionup          "
+let result = text.trim()
+console.log(result)
 }
-function lower(){
-    return text.toLowerCase()
+const lowerCase = function(){
+    let a = "FUNCTIONUP"
+    let res = a.toLowerCase()
+    console.log('lowerCase function:'+res)
 }
-function upper(){
-    return text.toUpperCase()
+const upperCase = function(){
+    let b = "functionup"
+    let ans = b.toUpperCase()
+    console.log('upperCase function:'+ans)
 }
 
-module.exports.text = text
-module.exports.trim = trim
-module.exports.lower = lower
-moduke.exports.upper = upper
+module.exports.shave = trim
+module.exports.lowerCase = lowerCase
+module.exports.capital = upperCase

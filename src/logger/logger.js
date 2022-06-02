@@ -1,7 +1,7 @@
 const name = "Bharath"
 const batch = "radon"
 
-const welcome = function welcome() {
+const welcome = function () {
 }
 
 module.exports.name = name
