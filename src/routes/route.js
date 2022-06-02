@@ -1,18 +1,20 @@
 const text = require('body-parser/lib/types/text');
 const express = require('express');
-const externalModule = require('../logger/logger')
-const externalModule = require('../util/helper')
-const externalModule = require('../validator/formatter')
+const myHelper = require('../util/helper')
+
 
 
 
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
-    console.log('Welcome to my application. I am '+externalModule.name)
-    console.log('and a part of FunctionUp '+externalModule.batch)
-    console.log('cohort.')
-    externalModule.welcome()
+    myHelper.printDate()
+    myHelper.getcurrentMonth()
+    myHelper.getCohortData()
+   // console.log('Welcome to my application. I am '+externalModule.name)
+    //console.log('and a part of FunctionUp '+externalModule.batch)
+    //console.log('cohort.')
+    //externalModule.welcome()
     res.send('My first ever api!')
 });
 

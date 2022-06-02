@@ -1,20 +1,19 @@
-function date(){
-    const d = new Date()
-    let day = d.getDate()
-    return day   
+const printDate = function(){
+    let currentDate = new Date()
+        console.log(currentDate)
+    
 }
- function month(){
-    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    const d = new Date()
-    let name = month[d.getMonth()]
+const printMOnth = function(){
+    let currentDate = new Date()
+    let currentMonth = currentDate.getMonth() + 1
+    console.log("The current month is "+currentMonth)
 }
-const batchName = "Radon"
-const weekDay = "W3D3"
-const batchInfo = function getBatchInfo(){
+const getBatchInfo = function(){
+    let batchInformation = " Radon, W3D3, the topic for today is Nodejs module system"
+    console.log(batchInformation)
 }
-module.exports.batchName = batchName
-module.exports.weekDay = weekDay
-module.exports.batchInfo = batchInfo
-module.exports.today = today
-module.exports.month = month
-   
+
+
+module.exports.printDate = printDate
+module.exports.getcurrentMonth = printMOnth
+module.exports.getCohortData = getBatchInfo
