@@ -13,9 +13,13 @@ router.get('/test-me', function (req, res) {
     res.send('My first ever api!')
 });
 
-router.get('/hello', function (req, res) {
+router.get('/movies', function (req, res) {
+    const abc = require('express')
+    const arr = ["kgf-1",'kgf-2','Happy Days','kbl']
+    let movie = console.log(abc.arr)
+    console.log(movie)
    
-    res.send('Hello there!')
+    res.send('Movies List')
 });
 
 router.get('/candidates', function(req, res){
