@@ -8,11 +8,13 @@ const middleAuth = function (req, res,next) {
     if (!token) token = req.headers["x-auth-token"];
     
     //If no token is present in the request header return error
-    if (!token) return res.send({ status: false, msg: "token must be present" }),next();
+    if (!token) return res.send({ status: false, msg: "token must be present" }),
+    next();
     
     let decodedToken = jwt.verify(token, "functionup-radon");
     if (!decodedToken)
-      return res.send({ status: false, msg: "token is invalid" }),next();
+      return res.send({ status: false, msg: "token is invalid" }),
+      next();
 
     else next();
   };
