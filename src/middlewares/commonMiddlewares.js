@@ -1,26 +1,51 @@
+const jwt = require("jsonwebtoken");
+const userModel = require("../models/userModel")
 
-const mid1= function ( req, res, next) {
-    req.falana= "hi there. i am adding something new to the req object"
-    console.log("Hi I am a middleware named Mid1")
+const authenticate = function(req, res, next) {
+    try{
+        let token = req.headers["x-Auth-token"];
+        if (!token) token = req.headers["x-auth-token"];      //If no token is present in the request header return error
+        if (!token) return res.status(401).send({ status: false, msg: "token must be present" })
+        let decodedToken = jwt.verify(token, "functionup-radon");
+    if (!decodedToken)
+    return
+    }
+    catch(err){
+        res.status(401).send({ status: false, msg: err.message })  
+        console.log("This is the error :", err.message)
+        res.status(500).send({ msg: "Error", error: err.message })
+      }
+      next();
+        };
+
+const authorise = function(req,res,next){
+    try{
+        let token = req.headers["x-Auth-token"];
+    if (!token) token = req.headers["x-auth-token"];
+    let decodedToken = jwt.verify(token, "functionup-radon");
+
+    //userId for which the request is made. In this case message to be posted.
+    let userToBeModified = req.params.userId
+    //userId for the logged-in user
+    let userLoggedIn = decodedToken.userId
+
+    //userId comparision to check if the logged-in user is requesting for their own data
+    if(userToBeModified != userLoggedIn) 
+    return res.status(403).send({status: false, msg: 'User logged is not allowed to modify the requested users data'})
+    } catch(err){
+      res.status(500).send({ msg: "Error", error: err.message })
+    }  
+    // let user = await userModel.findById(req.params.userId)
+    // if(!user) return res.send({status: false, msg: 'No such user exists'})
     next()
-}
+  }   
+    
+  module.exports.authenticate = authenticate
+  module.exports.authorise = authorise
 
-const mid2= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid2")
-    next()
-}
+   
 
-const mid3= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid3")
-    next()
-}
 
-const mid4= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid4")
-    next()
-}
-
-module.exports.mid1= mid1
-module.exports.mid2= mid2
-module.exports.mid3= mid3
-module.exports.mid4= mid4
+   
+    
+    
